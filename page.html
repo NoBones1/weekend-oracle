@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekend Oracle</title>
+<meta name="description" content="Hyperliquid trades shares, gold and oil all weekend. Does its Sunday price call Monday's open? A running scoreboard.">
+<style>
+:root {
+  --bg: #090c11; --panel: #121722; --panel2: #171d2a; --line: #1f2633; --line2: #2a3344;
+  --text: #e8ebf1; --muted: #8b95a7; --dim: #7c869a;
+  --up: #34d399; --down: #f87171; --amber: #fbbf24; --blue: #60a5fa;
+  --uptint: #0f2a22; --downtint: #3a1418; --scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f6f8fb; --panel: #ffffff; --panel2: #eef2f8; --line: #dfe5ee; --line2: #c3ccdb;
+    --text: #101a2e; --muted: #55627a; --dim: #7d879b;
+    --up: #0a8f57; --down: #cc3333; --amber: #a4700d; --blue: #1d5fd8;
+    --uptint: #d6f2e5; --downtint: #fbdedc; --scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f6f8fb; --panel: #ffffff; --panel2: #eef2f8; --line: #dfe5ee; --line2: #c3ccdb;
+  --text: #101a2e; --muted: #55627a; --dim: #7d879b;
+  --up: #0a8f57; --down: #cc3333; --amber: #a4700d; --blue: #1d5fd8;
+  --uptint: #d6f2e5; --downtint: #fbdedc; --scheme: light;
+}
+* { box-sizing: border-box; }
+html { color-scheme: var(--scheme); }
+body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 28px 16px 64px; }
+header { display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; }
+h1 { font-size: 30px; line-height: 1.15; margin: 0 0 6px; letter-spacing: -0.01em; }
+h2 { font-size: 19px; margin: 40px 0 6px; }
+.lede { color: var(--muted); max-width: 680px; margin: 0; }
+.meta { color: var(--dim); font-size: 13px; margin-top: 8px; }
+.toggle { display: inline-flex; border: 1px solid var(--line2); border-radius: 8px; overflow: hidden; }
+.toggle button { background: none; border: 0; color: var(--muted); padding: 6px 12px; font: inherit; font-size: 13px; cursor: pointer; }
+.toggle button[aria-pressed="true"] { background: var(--panel2); color: var(--text); }
+.verdict { margin-top: 24px; padding: 20px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; }
+.verdict p { margin: 0; font-size: 17px; max-width: 820px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-top: 16px; }
+.tile { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.tile .k { color: var(--muted); font-size: 13px; }
+.tile .v { font-size: 30px; font-weight: 650; font-variant-numeric: tabular-nums; margin: 2px 0; }
+.tile .s { color: var(--dim); font-size: 12.5px; }
+.sub { color: var(--muted); margin: 0 0 12px; max-width: 760px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 4px 0; overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums; }
+th, td { padding: 8px 12px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { color: var(--muted); font-weight: 500; font-size: 12.5px; cursor: default; }
+th.sort { cursor: pointer; } th.sort:hover { color: var(--text); }
+tr:last-child td { border-bottom: 0; }
+td .nm { color: var(--dim); font-size: 12.5px; margin-left: 6px; }
+.up { color: var(--up); } .down { color: var(--down); } .amber { color: var(--amber); } .dim { color: var(--dim); }
+.pill { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 12px; }
+.pill.win { background: var(--uptint); color: var(--up); } .pill.loss { background: var(--downtint); color: var(--down); }
+.controls { display: flex; gap: 10px; flex-wrap: wrap; margin: 0 0 10px; align-items: center; }
+.controls select, .controls input { background: var(--panel); color: var(--text); border: 1px solid var(--line2); border-radius: 8px; padding: 6px 10px; font: inherit; font-size: 14px; }
+.controls label { color: var(--muted); font-size: 13px; display: inline-flex; gap: 6px; align-items: center; }
+svg text { fill: var(--muted); font-size: 11px; }
+.chart { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; color: var(--muted); font-size: 12.5px; margin-top: 8px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.how { color: var(--muted); max-width: 780px; }
+.how li { margin: 6px 0; }
+.sm-only { display: none; }
+.stale { margin: 0 0 12px; padding: 10px 14px; border-radius: 10px; background: var(--downtint); color: var(--down); font-weight: 600; }
+.empty { color: var(--muted); padding: 14px 16px; margin: 0; }
+a { color: var(--blue); }
+@media (max-width: 600px) { h1 { font-size: 25px; } .tile .v { font-size: 26px; } th, td { padding: 7px 9px; } .hide-sm { display: none; } td .nm { display: block; margin-left: 0; } th, td:first-child { white-space: normal; } td:first-child { min-width: 110px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Weekend Oracle</h1>
+      <p class="lede">Hyperliquid trades shares, gold and oil all weekend while the real markets are shut. By Sunday evening its price has moved: that move is a guess at how the real market will reopen. This page checks every guess against what actually happened.</p>
+      <div class="meta" id="meta"></div>
+    </div>
+    <div class="toggle" role="group" aria-label="Colour theme">
+      <button data-t="dark">Dark</button><button data-t="light">Light</button>
+    </div>
+  </header>
+
+  <div class="verdict"><p id="verdict"></p></div>
+  <div class="tiles" id="tiles"></div>
+
+  <div class="verdict" id="findingsBox"><ul class="how" id="findings" style="margin:0;padding-left:18px"></ul></div>
+
+  <h2>This weekend's guesses</h2>
+  <p class="sub" id="pendingSub"></p>
+  <div class="card" id="pending"></div>
+
+  <h2>Weekend by weekend</h2>
+  <p class="sub">Each bar is one weekend. Its height is the share of markets where the Sunday guess landed closer to the real reopen than Friday's close did. Above the middle line, the guess helped that weekend; below it, you'd have done better assuming nothing changed.</p>
+  <div class="chart" id="weeksChart"></div>
+
+  <h2>Guess against reality</h2>
+  <p class="sub">Each dot is one market on one weekend. Across: how far the perp had moved by Sunday evening. Up: how far the real market actually jumped at the reopen. A perfect guess sits on the diagonal line. Dots in the top-right and bottom-left at least got the direction right.</p>
+  <div class="chart" id="scatter"></div>
+
+  <h2>By type of market</h2>
+  <div class="card" id="groups"></div>
+
+  <h2>Every market</h2>
+  <div class="controls">
+    <select id="fGroup" aria-label="Type of market"><option value="">All types</option></select>
+    <input id="fSearch" type="search" placeholder="Find a market" aria-label="Find a market">
+    <label><input id="fMin" type="checkbox" checked> Only markets with 8+ weekends</label>
+  </div>
+  <div class="card" id="markets"></div>
+
+  <h2>How it's scored</h2>
+  <ul class="how" id="how"></ul>
+</div>
+
+<script>
+const DATA = /*__DATA__*/null;
+
+// ---- theme
+(function () {
+  const root = document.documentElement;
+  let saved = null;
+  try { saved = localStorage.getItem("wo.theme"); } catch (e) {}
+  const prefersLight = window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches;
+  const set = (t) => {
+    root.setAttribute("data-theme", t);
+    document.querySelectorAll(".toggle button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.t === t)));
+    try { localStorage.setItem("wo.theme", t); } catch (e) {}
+  };
+  set(saved || (prefersLight ? "light" : "dark"));
+  document.querySelectorAll(".toggle button").forEach((b) => b.addEventListener("click", () => set(b.dataset.t)));
+})();
+
+// ---- helpers
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const pct = (x, d = 0) => x == null ? "–" : (x * 100).toFixed(d) + "%";
+const spct = (x, d = 2) => x == null ? "–" : (x > 0 ? "+" : x < 0 ? "−" : "") + Math.abs(x * 100).toFixed(d) + "%";
+const cls = (x) => x > 0 ? "up" : x < 0 ? "down" : "dim";
+const rateCls = (r) => r == null ? "dim" : r > 0.5 ? "up" : r < 0.5 ? "down" : "dim";
+const when = (ms) => new Date(ms).toLocaleString("en-GB", { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+const dayLabel = (iso) => new Date(iso + "T12:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+const GROUP = Object.fromEntries((DATA?.groups || []).map((g) => [g.key, g.label]));
+const odds = (p) => p == null ? "" : p < 0.001 ? "less than 1 in 1,000" : "about 1 in " + Math.max(1, Math.round(1 / p)).toLocaleString("en-GB");
+
+function render() {
+  if (!DATA || !DATA.overall || !DATA.overall.n) {
+    $("verdict").textContent = "No weekends scored yet.";
+    return;
+  }
+  const o = DATA.overall, ol = DATA.overall_last, wr = DATA.weekend_record, cov = DATA.coverage;
+  const ageDays = (Date.now() - DATA.generated_ms) / 86400000;
+  if (ageDays > 8) {
+    $("verdict").insertAdjacentHTML("beforebegin", `<p class="stale">This page hasn't updated for ${Math.floor(ageDays)} days, so its newest weekends are missing. It normally updates every Saturday, Sunday evening and Monday.</p>`);
+  }
+  $("meta").textContent = `Updated ${when(DATA.generated_ms)} · ${DATA.weekends.length} weekends from ${dayLabel(cov.first_weekend)} to ${dayLabel(cov.last_weekend)} · ${cov.with_rows} markets · ${o.n.toLocaleString("en-GB")} market-weekends`;
+
+  // Verdict in one plain sentence, honest about luck.
+  const helped = o.beat_rate > 0.5;
+  const luck = wr.p == null ? "" : wr.p < 0.05
+    ? ` A split that lopsided would happen by pure chance only ${odds(wr.p)} times, so it is unlikely to be luck: ${helped ? "the Sunday price really does know something" : "on its own, the Sunday price really is the worse guess"}.`
+    : ` That is well within what tossing a coin would produce, so there is no proof yet either way.`;
+  $("verdict").innerHTML =
+    `Across ${wr.of} weekends, Hyperliquid's Sunday-evening price landed closer to the real reopening price than Friday's close did in <b>${pct(o.beat_rate)}</b> of cases` +
+    (helped ? `, so it usually told you something the close didn't.` : `, so most of the time "nothing changed since Friday" was the better guess.`) +
+    ` It came out ahead on <b>${wr.won} of ${wr.of}</b> weekends.${luck}`;
+
+  const tiles = [
+    ["Beat Friday's close", pct(o.beat_rate), `${o.beat.toLocaleString("en-GB")} of ${o.beat_n.toLocaleString("en-GB")} market-weekends`, rateCls(o.beat_rate)],
+    ["Right direction", pct(o.hit_rate), `${o.hits.toLocaleString("en-GB")} of ${o.calls.toLocaleString("en-GB")} calls · up or down`, rateCls(o.hit_rate)],
+    ["Big gaps, right direction", pct(o.big_hit_rate), `${o.big_hits} of ${o.big_calls} reopens that jumped 1% or more`, rateCls(o.big_hit_rate)],
+    ["Share of the jump it saw coming", pct(o.captured), `average miss ${spct(o.mae_guess).replace("+", "")} vs ${spct(o.mae_friday).replace("+", "")} for Friday's close`, rateCls(o.captured == null ? null : 0.5 + o.captured)],
+  ];
+  $("tiles").innerHTML = tiles.map(([k, v, s, c]) => `<div class="tile"><div class="k">${k}</div><div class="v ${c}">${v}</div><div class="s">${s}</div></div>`).join("");
+
+  // What the numbers say, in words
+  const F = [];
+  if (o.corr != null) {
+    const rel = o.corr >= 0.5 ? "closely" : o.corr >= 0.25 ? "loosely" : o.corr > 0.05 ? "only faintly" : "not";
+    F.push(`<b>It points the right way, ${rel}.</b> Bigger weekend moves do go with bigger real gaps (a correlation of ${o.corr.toFixed(2)}, where 1 would be perfect and 0 no link at all).`);
+  }
+  if (o.slope != null && o.slope > 0 && o.slope < 0.9) {
+    F.push(`<b>It overshoots.</b> On average the real gap was about <b>${Math.round(o.slope * 100)}%</b> of the size of the perp's weekend move. Take a weekend move with a pinch of salt: roughly ${o.slope < 0.65 ? "halve" : "trim"} it.`);
+  }
+  if (o.guess_up_share - o.up_share > 0.05) {
+    F.push(`<b>It leans upward.</b> The perp pointed up on ${pct(o.guess_up_share)} of market-weekends, but the real market reopened higher only ${pct(o.up_share)} of the time.`);
+  }
+  if (o.big_hit_rate != null) {
+    F.push(`<b>On the weekends that mattered</b> (reopens that jumped 1% or more), it got the direction right ${o.big_hits} times out of ${o.big_calls} (${pct(o.big_hit_rate)}).`);
+  }
+  $("findings").innerHTML = F.map((x) => `<li>${x}</li>`).join("");
+  $("findingsBox").style.display = F.length ? "" : "none";
+
+  // Pending
+  const P = DATA.pending || [];
+  if (!P.length) {
+    $("pendingSub").textContent = "Nothing is waiting right now. Guesses appear here after the real markets close on Friday and are scored when they reopen.";
+    $("pending").innerHTML = `<p class="empty">The real markets are open, so there is nothing to guess.</p>`;
+  } else {
+    $("pendingSub").textContent = `The real markets are shut. These are the perps' moves since Friday's close, biggest first. They will be scored when each market reopens. Calculated ${when(DATA.generated_ms)}.`;
+    $("pending").innerHTML = `<table><thead><tr><th>Market</th><th>Guess so far</th><th>Friday close</th><th class="hide-sm">Type</th></tr></thead><tbody>` +
+      P.slice(0, 40).map((p) => `<tr><td>${esc(p.coin)}<span class="nm">${esc(p.name)}</span></td><td class="${cls(p.guess)}">${spct(p.guess)}</td><td>${(+p.ref_close).toLocaleString("en-GB", { maximumFractionDigits: 2 })}</td><td class="hide-sm">${esc(GROUP[p.group] || "")}</td></tr>`).join("") +
+      `</tbody></table>`;
+  }
+
+  weeksChart();
+  scatter();
+
+  // Groups
+  $("groups").innerHTML = `<table><thead><tr><th>Type</th><th class="hide-sm">Market-weekends</th><th>Beat Friday</th><th>Right direction</th><th class="hide-sm">Big gaps right</th><th class="hide-sm">Jump seen coming</th></tr></thead><tbody>` +
+    DATA.groups.filter((g) => g.n).map((g) => `<tr><td>${esc(g.label)}<span class="nm sm-only">${g.n} market-weekends</span></td><td class="hide-sm">${g.n}</td><td class="${rateCls(g.beat_rate)}">${pct(g.beat_rate)}</td><td class="${rateCls(g.hit_rate)}">${pct(g.hit_rate)}</td><td class="hide-sm ${rateCls(g.big_hit_rate)}">${g.big_calls ? pct(g.big_hit_rate) + ` <span class="dim">(${g.big_calls})</span>` : "–"}</td><td class="hide-sm ${cls(g.captured)}">${pct(g.captured)}</td></tr>`).join("") +
+    `</tbody></table>`;
+
+  // Markets
+  const sel = $("fGroup");
+  DATA.groups.filter((g) => g.n).forEach((g) => sel.insertAdjacentHTML("beforeend", `<option value="${g.key}">${esc(g.label)}</option>`));
+  [sel, $("fSearch"), $("fMin")].forEach((el) => el.addEventListener("input", markets));
+  markets();
+
+  const lastBetter = ol.beat_rate - o.beat_rate;
+  $("how").innerHTML = [
+    `<b>The guess.</b> For each market, the perp's move from the real market's Friday close to <b>5pm New York time on Sunday</b>. That's just before US futures and currencies reopen, so nothing but the weekend perp has priced it yet.`,
+    `<b>The answer.</b> The real market's move from Friday's official close to its official reopen. For shares, that's the opening price on Monday (or the next trading day). For gold, oil and currencies, it's the first price when trading restarts on Sunday evening.`,
+    `<b>Beat Friday's close.</b> The simplest guess is "it reopens where it closed". The Sunday price wins if it lands closer to the real reopen than that.`,
+    `<b>Right direction.</b> The perp called up and the market opened up, or down and down. Moves under ${pct(DATA.settings.no_call, 1)} count as "no call" and are left out.`,
+    `<b>Weekends won.</b> Markets move together, so a good weekend for one share is usually good for most. The fair way to judge luck is to count weekends, not rows: a weekend is "won" when the guess beat Friday's close on more than half its markets.`,
+    `<b>Left out.</b> Weekends where a perp didn't trade at all between Friday's close and Sunday evening; markets with no real-world price to compare against (private companies such as OpenAI, crypto indices: ${DATA.skipped.no_reference.length}); and markets not yet matched to a real-world price (${DATA.skipped.unmapped.length}).` +
+      (DATA.skipped.no_prices && DATA.skipped.no_prices.length ? ` This run couldn't fetch real prices for ${DATA.skipped.no_prices.map(esc).join(", ")}; they'll be retried next time.` : "") +
+      (DATA.skipped.mismatch.length ? ` ${DATA.skipped.mismatch.length} more were left out because their Hyperliquid price did not keep step with the real price they're supposed to follow, which suggests a wrong match: ${DATA.skipped.mismatch.map((x) => esc(x.coin)).join(", ")}.` : ""),
+    `<b>The last word before the bell.</b> If you read the perp just before each market reopens instead of on Sunday, it beats Friday's close ${pct(ol.beat_rate)} of the time (${lastBetter >= 0 ? "+" : "−"}${Math.abs(lastBetter * 100).toFixed(0)} points). For US shares, much of that edge comes from pre-market trading on Monday, which the perp copies, so it isn't really a weekend forecast.`,
+    `<b>Limits.</b> Hyperliquid prices are hourly, so each reading is the last completed hour. Exchange holidays are taken from the real trading days, but early closes (such as the day after Thanksgiving) are treated as full days. Index "opening prices" can lag the true market for a few minutes after the bell.`,
+    `<b>Sources.</b> Hyperliquid's public API for perp prices. Yahoo Finance for official open and close prices. HIP3 Lens's curated list of what each perp tracks. <a href="weekends.csv">Download every row (CSV)</a>.`,
+  ].map((x) => `<li>${x}</li>`).join("");
+}
+
+let sortKey = "n", sortDir = -1;
+function markets() {
+  const g = $("fGroup").value, q = $("fSearch").value.trim().toLowerCase(), min = $("fMin").checked ? 8 : 1;
+  let rows = DATA.markets.filter((m) => m.n >= min && (!g || m.group === g) && (!q || (m.coin + " " + m.name + " " + m.symbol).toLowerCase().includes(q)));
+  rows.sort((a, b) => ((a[sortKey] ?? -1) > (b[sortKey] ?? -1) ? 1 : (a[sortKey] ?? -1) < (b[sortKey] ?? -1) ? -1 : 0) * sortDir || a.coin.localeCompare(b.coin));
+  const cols = [["coin", "Market"], ["n", "Weekends"], ["beat_rate", "Beat Friday"], ["hit_rate", "Right direction"], ["captured", "Jump seen coming", "hide-sm"], ["mae_guess", "Average miss", "hide-sm"]];
+  $("markets").innerHTML = !rows.length ? `<p class="empty">No markets match.</p>` :
+    `<table><thead><tr>${cols.map(([k, l, c]) => `<th class="sort ${c || ""}" data-k="${k}">${l}${sortKey === k ? (sortDir > 0 ? " ↑" : " ↓") : ""}</th>`).join("")}</tr></thead><tbody>` +
+    rows.map((m) => `<tr><td>${esc(m.coin)}<span class="nm">${esc(m.name)}</span></td><td>${m.n}</td><td class="${rateCls(m.beat_rate)}">${pct(m.beat_rate)}</td><td class="${rateCls(m.hit_rate)}">${pct(m.hit_rate)}</td><td class="hide-sm ${cls(m.captured)}">${pct(m.captured)}</td><td class="hide-sm">${spct(m.mae_guess).replace("+", "")}</td></tr>`).join("") +
+    `</tbody></table>`;
+  $("markets").querySelectorAll("th.sort").forEach((th) => th.addEventListener("click", () => {
+    const k = th.dataset.k; sortDir = sortKey === k ? -sortDir : (k === "coin" || k === "mae_guess" ? 1 : -1); sortKey = k; markets();
+  }));
+}
+
+function weeksChart() {
+  const W = DATA.weekends, w = Math.max(320, Math.min(1000, ($("weeksChart").clientWidth || 1000) - 24)), h = w < 600 ? 200 : 220, pad = { l: 34, r: 8, t: 10, b: 28 };
+  const bw = (w - pad.l - pad.r) / W.length;
+  const y = (v) => pad.t + (1 - v) * (h - pad.t - pad.b);
+  let s = `<svg viewBox="0 0 ${w} ${h}" width="100%" role="img" aria-label="Share of markets where the Sunday guess beat Friday's close, per weekend">`;
+  [0, 0.25, 0.5, 0.75, 1].forEach((v) => {
+    s += `<line x1="${pad.l}" x2="${w - pad.r}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" ${v === 0.5 ? 'stroke="var(--line2)" stroke-width="1.5"' : ""}/>`;
+    s += `<text x="${pad.l - 6}" y="${y(v) + 4}" text-anchor="end">${v * 100}%</text>`;
+  });
+  W.forEach((wk, i) => {
+    const v = wk.beat_rate ?? 0.5, x = pad.l + i * bw + bw * 0.15, top = Math.min(y(v), y(0.5)), ht = Math.abs(y(v) - y(0.5));
+    const col = v > 0.5 ? "var(--up)" : v < 0.5 ? "var(--down)" : "var(--dim)";
+    s += `<rect x="${x}" y="${top}" width="${bw * 0.7}" height="${Math.max(1, ht)}" fill="${col}" rx="2"><title>Weekend of ${dayLabel(wk.weekend)}: beat Friday's close on ${wk.beat} of ${wk.beat_n} markets (${pct(wk.beat_rate)}); right direction ${wk.hits} of ${wk.calls}</title></rect>`;
+    if (i % Math.ceil(W.length / (w < 600 ? 4 : 10)) === 0) s += `<text x="${x + bw * 0.35}" y="${h - 8}" text-anchor="middle">${dayLabel(wk.weekend)}</text>`;
+  });
+  s += `</svg>`;
+  $("weeksChart").innerHTML = s + `<div class="legend"><span><i style="background:var(--up)"></i>Guess helped</span><span><i style="background:var(--down)"></i>Friday's close was better</span><span>Hover a bar for the numbers</span></div>`;
+}
+
+function scatter() {
+  const R = DATA.rows.filter((r) => !r.silent), lim = 0.06, w = 520, h = 520, pad = 40;
+  const sx = (v) => pad + (Math.max(-lim, Math.min(lim, v)) + lim) / (2 * lim) * (w - 2 * pad);
+  const sy = (v) => h - pad - (Math.max(-lim, Math.min(lim, v)) + lim) / (2 * lim) * (h - 2 * pad);
+  let s = `<svg viewBox="0 0 ${w} ${h}" width="100%" style="max-width:560px;display:block;margin:0 auto" role="img" aria-label="Sunday guess against the real reopen, one dot per market-weekend">`;
+  [-0.06, -0.03, 0, 0.03, 0.06].forEach((v) => {
+    s += `<line x1="${sx(v)}" x2="${sx(v)}" y1="${pad}" y2="${h - pad}" stroke="var(--line)"/><line x1="${pad}" x2="${w - pad}" y1="${sy(v)}" y2="${sy(v)}" stroke="var(--line)"/>`;
+    s += `<text x="${sx(v)}" y="${h - pad + 16}" text-anchor="middle">${spct(v, 0)}</text><text x="${pad - 6}" y="${sy(v) + 4}" text-anchor="end">${spct(v, 0)}</text>`;
+  });
+  s += `<line x1="${sx(-lim)}" y1="${sy(-lim)}" x2="${sx(lim)}" y2="${sy(lim)}" stroke="var(--blue)" stroke-dasharray="4 4"/>`;
+  R.forEach((r) => {
+    const ok = Math.sign(r.guess) === Math.sign(r.actual) && Math.abs(r.guess) >= DATA.settings.no_call;
+    s += `<circle cx="${sx(r.guess).toFixed(1)}" cy="${sy(r.actual).toFixed(1)}" r="2.6" fill="${ok ? "var(--up)" : "var(--down)"}" fill-opacity="0.45"><title>${esc(r.coin)}, weekend of ${dayLabel(r.weekend)}: guess ${spct(r.guess)}, real ${spct(r.actual)}</title></circle>`;
+  });
+  s += `<text x="${w / 2}" y="${h - 4}" text-anchor="middle">Sunday guess</text><text x="12" y="${h / 2}" text-anchor="middle" transform="rotate(-90 12 ${h / 2})">Real reopen</text></svg>`;
+  $("scatter").innerHTML = s + `<div class="legend"><span><i style="background:var(--up)"></i>Right direction</span><span><i style="background:var(--down)"></i>Wrong, or no call</span><span>Moves beyond ±6% are pinned to the edge</span></div>`;
+}
+
+render();
+</script>
+</body>
+</html>

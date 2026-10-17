@@ -1,0 +1,17 @@
+{
+ "_read_me": "Markets missing from HIP3 Lens's mapping (hip3/src/data/underlying.ts), added here so the Oracle can score them without editing HIP3 Lens. Only unambiguous listings. Every market, including these, must also pass the price-match check in oracle.py. Candidates to copy into HIP3 Lens's mapping later, with permission.",
+ "markets": {
+  "SNAP": {"symbol": "SNAP", "kind": "equity", "name": "Snap"},
+  "CVX": {"symbol": "CVX", "kind": "equity", "name": "Chevron"},
+  "ACN": {"symbol": "ACN", "kind": "equity", "name": "Accenture"},
+  "IONQ": {"symbol": "IONQ", "kind": "equity", "name": "IonQ"},
+  "CIFR": {"symbol": "CIFR", "kind": "equity", "name": "Cipher Mining"},
+  "UMC": {"symbol": "UMC", "kind": "equity", "name": "United Microelectronics ADR"},
+  "TLT": {"symbol": "TLT", "kind": "etf", "name": "iShares 20+ Year Treasury ETF"},
+  "GDX": {"symbol": "GDX", "kind": "etf", "name": "VanEck Gold Miners ETF"},
+  "JPN225": {"symbol": "^N225", "kind": "index", "name": "Nikkei 225"},
+  "NIFTY": {"symbol": "^NSEI", "kind": "index", "name": "Nifty 50"},
+  "CORN": {"symbol": "ZC=F", "kind": "commodity", "name": "Corn"},
+  "HO": {"symbol": "HO=F", "kind": "commodity", "name": "Heating oil"}
+ }
+}

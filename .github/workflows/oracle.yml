@@ -1,0 +1,89 @@
+# Weekend Oracle: re-score every weekend and republish the page.
+# Runs on GitHub's machines, so it needs no computer left switched on and none of
+# HyperTrader10's Apps Script minutes. A failed run emails the repository owner.
+name: Weekend Oracle
+
+on:
+  schedule:
+    - cron: "0 12 * * 6"   # Saturday midday UTC: this weekend's guesses so far
+    - cron: "30 22 * * 0"  # Sunday 22:30 UTC: just after the Sunday reading
+    - cron: "15 15 * * 1"  # Monday 15:15 UTC: every market has reopened; score the weekend
+  workflow_dispatch:
+
+concurrency:
+  group: oracle
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Tests
+        run: python3 -m unittest discover -s tests
+
+      # Hyperliquid forgets candles older than 5,000 hours, so the price history
+      # lives on the `cache` branch (one commit, replaced each run, with the
+      # previous copy kept beside it as cache-prev.tar.gz).
+      - name: Restore price history
+        run: |
+          if git fetch --depth=1 origin cache:refs/remotes/origin/cache 2>/dev/null; then
+            git show origin/cache:cache.tar.gz > /tmp/cache.tar.gz
+            tar xzf /tmp/cache.tar.gz
+          fi
+          python3 tools/cache_guard.py snapshot > /tmp/before.json
+          echo "markets in history: $(python3 -c 'import json;print(len(json.load(open("/tmp/before.json"))))')"
+
+      - name: Score every weekend
+        env:
+          WO_HL_BUDGET: "480"
+        run: python3 -u oracle.py
+
+      - name: Check no history was lost
+        run: python3 tools/cache_guard.py check /tmp/before.json
+
+      - name: Save price history
+        run: |
+          tar czf /tmp/new.tar.gz cache
+          mkdir /tmp/cachebranch && cd /tmp/cachebranch
+          git init -q && git checkout -q --orphan cache
+          cp /tmp/new.tar.gz cache.tar.gz
+          if [ -f /tmp/cache.tar.gz ]; then cp /tmp/cache.tar.gz cache-prev.tar.gz; fi
+          git add -A
+          git -c user.name="weekend-oracle" -c user.email="actions@users.noreply.github.com" commit -qm "Price history $(date -u +%F' '%H:%M)"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" cache
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
+      # Last, so the page and the history are saved even when this complains.
+      - name: Was the weekend scored?
+        run: python3 tools/health.py
+
+      # GitHub switches off schedules in repositories with no activity for 60
+      # days. A one-line status file on main each Monday keeps it alive.
+      - name: Keep the schedule alive
+        if: github.event.schedule == '15 15 * * 1'
+        run: |
+          mkdir -p status && cp out/status.json status/last-run.json
+          git add status/last-run.json
+          git -c user.name="weekend-oracle" -c user.email="actions@users.noreply.github.com" commit -qm "Monday run $(date -u +%F)" || exit 0
+          git push -q

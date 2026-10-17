@@ -1,0 +1,1133 @@
+{
+ "source": "hip3/src/data/underlying.ts",
+ "exported": "2026-10-17T02:08:54.143Z",
+ "markets": {
+  "GOLD": {
+   "symbol": "GC=F",
+   "kind": "commodity",
+   "name": "Gold",
+   "venue": "CME",
+   "note": null
+  },
+  "SILVER": {
+   "symbol": "SI=F",
+   "kind": "commodity",
+   "name": "Silver",
+   "venue": "CME",
+   "note": null
+  },
+  "PLATINUM": {
+   "symbol": "PL=F",
+   "kind": "commodity",
+   "name": "Platinum",
+   "venue": "CME",
+   "note": null
+  },
+  "PALLADIUM": {
+   "symbol": "PA=F",
+   "kind": "commodity",
+   "name": "Palladium",
+   "venue": "CME",
+   "note": null
+  },
+  "COPPER": {
+   "symbol": "HG=F",
+   "kind": "commodity",
+   "name": "Copper",
+   "venue": "CME",
+   "note": null
+  },
+  "CL": {
+   "symbol": "CL=F",
+   "kind": "commodity",
+   "name": "WTI crude oil",
+   "venue": "CME",
+   "note": null
+  },
+  "USOIL": {
+   "symbol": "CL=F",
+   "kind": "commodity",
+   "name": "WTI crude oil",
+   "venue": "CME",
+   "note": null
+  },
+  "OIL": {
+   "symbol": "CL=F",
+   "kind": "commodity",
+   "name": "WTI crude oil",
+   "venue": "CME",
+   "note": null
+  },
+  "WTI": {
+   "symbol": "CL=F",
+   "kind": "commodity",
+   "name": "WTI crude oil",
+   "venue": "CME",
+   "note": null
+  },
+  "BRENTOIL": {
+   "symbol": "BZ=F",
+   "kind": "commodity",
+   "name": "Brent crude oil",
+   "venue": "CME",
+   "note": null
+  },
+  "NATGAS": {
+   "symbol": "NG=F",
+   "kind": "commodity",
+   "name": "Henry Hub natural gas",
+   "venue": "CME",
+   "note": null
+  },
+  "GAS": {
+   "symbol": "NG=F",
+   "kind": "commodity",
+   "name": "Henry Hub natural gas",
+   "venue": "CME",
+   "note": null
+  },
+  "SOY": {
+   "symbol": "ZS=F",
+   "kind": "commodity",
+   "name": "Soybeans",
+   "venue": "CME",
+   "note": null
+  },
+  "WHEAT": {
+   "symbol": "ZW=F",
+   "kind": "commodity",
+   "name": "Wheat",
+   "venue": "CME",
+   "note": null
+  },
+  "SP500": {
+   "symbol": "^GSPC",
+   "kind": "index",
+   "name": "S&P 500",
+   "venue": "NYSE",
+   "note": null
+  },
+  "US500": {
+   "symbol": "^GSPC",
+   "kind": "index",
+   "name": "S&P 500",
+   "venue": "NYSE",
+   "note": null
+  },
+  "USA500": {
+   "symbol": "^GSPC",
+   "kind": "index",
+   "name": "S&P 500",
+   "venue": "NYSE",
+   "note": null
+  },
+  "XYZ100": {
+   "symbol": "^NDX",
+   "kind": "index",
+   "name": "Nasdaq 100",
+   "venue": "NYSE",
+   "note": null
+  },
+  "USA100": {
+   "symbol": "^NDX",
+   "kind": "index",
+   "name": "Nasdaq 100",
+   "venue": "NYSE",
+   "note": null
+  },
+  "USTECH": {
+   "symbol": "^NDX",
+   "kind": "index",
+   "name": "Nasdaq 100",
+   "venue": "NYSE",
+   "note": null
+  },
+  "SMALL2000": {
+   "symbol": "^RUT",
+   "kind": "index",
+   "name": "Russell 2000",
+   "venue": "NYSE",
+   "note": null
+  },
+  "KR200": {
+   "symbol": "^KS200",
+   "kind": "index",
+   "name": "KOSPI 200",
+   "venue": "NYSE",
+   "note": null
+  },
+  "JP225": {
+   "symbol": "^N225",
+   "kind": "index",
+   "name": "Nikkei 225",
+   "venue": "NYSE",
+   "note": null
+  },
+  "DXY": {
+   "symbol": "DX-Y.NYB",
+   "kind": "index",
+   "name": "US Dollar Index",
+   "venue": "NYSE",
+   "note": null
+  },
+  "10Y": {
+   "symbol": "^TNX",
+   "kind": "rate",
+   "name": "US 10-year Treasury yield",
+   "venue": "FX",
+   "note": null
+  },
+  "EUR": {
+   "symbol": "EURUSD=X",
+   "kind": "fx",
+   "name": "EUR/USD",
+   "venue": "FX",
+   "note": null
+  },
+  "GBP": {
+   "symbol": "GBPUSD=X",
+   "kind": "fx",
+   "name": "GBP/USD",
+   "venue": "FX",
+   "note": null
+  },
+  "JPY": {
+   "symbol": "JPY=X",
+   "kind": "fx",
+   "name": "USD/JPY",
+   "venue": "FX",
+   "note": null
+  },
+  "MAGS": {
+   "symbol": "MAGS",
+   "kind": "etf",
+   "name": "Roundhill Magnificent Seven ETF",
+   "venue": "NYSE",
+   "note": null
+  },
+  "MAG7": {
+   "symbol": "MAGS",
+   "kind": "etf",
+   "name": "Roundhill Magnificent Seven ETF",
+   "venue": "NYSE",
+   "note": null
+  },
+  "USBOND": {
+   "symbol": "TLT",
+   "kind": "etf",
+   "name": "iShares 20+ Year Treasury ETF",
+   "venue": "NYSE",
+   "note": null
+  },
+  "SOXL": {
+   "symbol": "SOXL",
+   "kind": "etf",
+   "name": "Direxion Semiconductor Bull 3x",
+   "venue": "NYSE",
+   "note": null
+  },
+  "SMH": {
+   "symbol": "SMH",
+   "kind": "etf",
+   "name": "VanEck Semiconductor ETF",
+   "venue": "NYSE",
+   "note": null
+  },
+  "SEMIS": {
+   "symbol": "SOXX",
+   "kind": "etf",
+   "name": "iShares Semiconductor ETF",
+   "venue": "NYSE",
+   "note": null
+  },
+  "SEMI": {
+   "symbol": "SOXX",
+   "kind": "etf",
+   "name": "iShares Semiconductor ETF",
+   "venue": "NYSE",
+   "note": null
+  },
+  "XLE": {
+   "symbol": "XLE",
+   "kind": "etf",
+   "name": "Energy Select Sector SPDR",
+   "venue": "NYSE",
+   "note": null
+  },
+  "ENERGY": {
+   "symbol": "XLE",
+   "kind": "etf",
+   "name": "Energy Select Sector SPDR",
+   "venue": "NYSE",
+   "note": null
+  },
+  "USENERGY": {
+   "symbol": "XLE",
+   "kind": "etf",
+   "name": "Energy Select Sector SPDR",
+   "venue": "NYSE",
+   "note": null
+  },
+  "XBI": {
+   "symbol": "XBI",
+   "kind": "etf",
+   "name": "SPDR S&P Biotech ETF",
+   "venue": "NYSE",
+   "note": null
+  },
+  "BIOTECH": {
+   "symbol": "IBB",
+   "kind": "etf",
+   "name": "iShares Biotechnology ETF",
+   "venue": "NYSE",
+   "note": null
+  },
+  "URNM": {
+   "symbol": "URNM",
+   "kind": "etf",
+   "name": "Sprott Uranium Miners ETF",
+   "venue": "NYSE",
+   "note": null
+  },
+  "NUCLEAR": {
+   "symbol": "URA",
+   "kind": "etf",
+   "name": "Global X Uranium ETF",
+   "venue": "NYSE",
+   "note": null
+  },
+  "DEFENSE": {
+   "symbol": "ITA",
+   "kind": "etf",
+   "name": "iShares U.S. Aerospace & Defense ETF",
+   "venue": "NYSE",
+   "note": null
+  },
+  "INFOTECH": {
+   "symbol": "XLK",
+   "kind": "etf",
+   "name": "Technology Select Sector SPDR",
+   "venue": "NYSE",
+   "note": null
+  },
+  "ROBOT": {
+   "symbol": "BOTZ",
+   "kind": "etf",
+   "name": "Global X Robotics & AI ETF",
+   "venue": "NYSE",
+   "note": null
+  },
+  "GLDMINE": {
+   "symbol": "GDX",
+   "kind": "etf",
+   "name": "VanEck Gold Miners ETF",
+   "venue": "NYSE",
+   "note": null
+  },
+  "EWY": {
+   "symbol": "EWY",
+   "kind": "etf",
+   "name": "iShares MSCI South Korea",
+   "venue": "NYSE",
+   "note": null
+  },
+  "EWJ": {
+   "symbol": "EWJ",
+   "kind": "etf",
+   "name": "iShares MSCI Japan",
+   "venue": "NYSE",
+   "note": null
+  },
+  "EWZ": {
+   "symbol": "EWZ",
+   "kind": "etf",
+   "name": "iShares MSCI Brazil",
+   "venue": "NYSE",
+   "note": null
+  },
+  "EWT": {
+   "symbol": "EWT",
+   "kind": "etf",
+   "name": "iShares MSCI Taiwan",
+   "venue": "NYSE",
+   "note": null
+  },
+  "IGV": {
+   "symbol": "IGV",
+   "kind": "etf",
+   "name": "iShares Software ETF",
+   "venue": "NYSE",
+   "note": null
+  },
+  "KORU": {
+   "symbol": "KORU",
+   "kind": "etf",
+   "name": "Direxion South Korea Bull 3x",
+   "venue": "NYSE",
+   "note": null
+  },
+  "KWEB": {
+   "symbol": "KWEB",
+   "kind": "etf",
+   "name": "KraneShares China Internet",
+   "venue": "NYSE",
+   "note": null
+  },
+  "DRAM": {
+   "symbol": "DRAM",
+   "kind": "etf",
+   "name": "Roundhill Memory ETF (Micron, Samsung, SK hynix)",
+   "venue": "NYSE",
+   "note": null
+  },
+  "NVDA": {
+   "symbol": "NVDA",
+   "kind": "equity",
+   "name": "NVIDIA",
+   "venue": "NYSE",
+   "note": null
+  },
+  "TSLA": {
+   "symbol": "TSLA",
+   "kind": "equity",
+   "name": "Tesla",
+   "venue": "NYSE",
+   "note": null
+  },
+  "AAPL": {
+   "symbol": "AAPL",
+   "kind": "equity",
+   "name": "Apple",
+   "venue": "NYSE",
+   "note": null
+  },
+  "META": {
+   "symbol": "META",
+   "kind": "equity",
+   "name": "Meta Platforms",
+   "venue": "NYSE",
+   "note": null
+  },
+  "MSFT": {
+   "symbol": "MSFT",
+   "kind": "equity",
+   "name": "Microsoft",
+   "venue": "NYSE",
+   "note": null
+  },
+  "GOOGL": {
+   "symbol": "GOOGL",
+   "kind": "equity",
+   "name": "Alphabet",
+   "venue": "NYSE",
+   "note": null
+  },
+  "AMZN": {
+   "symbol": "AMZN",
+   "kind": "equity",
+   "name": "Amazon",
+   "venue": "NYSE",
+   "note": null
+  },
+  "COIN": {
+   "symbol": "COIN",
+   "kind": "equity",
+   "name": "Coinbase",
+   "venue": "NYSE",
+   "note": null
+  },
+  "AMD": {
+   "symbol": "AMD",
+   "kind": "equity",
+   "name": "AMD",
+   "venue": "NYSE",
+   "note": null
+  },
+  "INTC": {
+   "symbol": "INTC",
+   "kind": "equity",
+   "name": "Intel",
+   "venue": "NYSE",
+   "note": null
+  },
+  "ORCL": {
+   "symbol": "ORCL",
+   "kind": "equity",
+   "name": "Oracle",
+   "venue": "NYSE",
+   "note": null
+  },
+  "MU": {
+   "symbol": "MU",
+   "kind": "equity",
+   "name": "Micron Technology",
+   "venue": "NYSE",
+   "note": null
+  },
+  "NFLX": {
+   "symbol": "NFLX",
+   "kind": "equity",
+   "name": "Netflix",
+   "venue": "NYSE",
+   "note": null
+  },
+  "COST": {
+   "symbol": "COST",
+   "kind": "equity",
+   "name": "Costco",
+   "venue": "NYSE",
+   "note": null
+  },
+  "LLY": {
+   "symbol": "LLY",
+   "kind": "equity",
+   "name": "Eli Lilly",
+   "venue": "NYSE",
+   "note": null
+  },
+  "HOOD": {
+   "symbol": "HOOD",
+   "kind": "equity",
+   "name": "Robinhood Markets",
+   "venue": "NYSE",
+   "note": null
+  },
+  "DKNG": {
+   "symbol": "DKNG",
+   "kind": "equity",
+   "name": "DraftKings",
+   "venue": "NYSE",
+   "note": null
+  },
+  "GME": {
+   "symbol": "GME",
+   "kind": "equity",
+   "name": "GameStop",
+   "venue": "NYSE",
+   "note": null
+  },
+  "BX": {
+   "symbol": "BX",
+   "kind": "equity",
+   "name": "Blackstone",
+   "venue": "NYSE",
+   "note": null
+  },
+  "EBAY": {
+   "symbol": "EBAY",
+   "kind": "equity",
+   "name": "eBay",
+   "venue": "NYSE",
+   "note": null
+  },
+  "ZM": {
+   "symbol": "ZM",
+   "kind": "equity",
+   "name": "Zoom Communications",
+   "venue": "NYSE",
+   "note": null
+  },
+  "MRVL": {
+   "symbol": "MRVL",
+   "kind": "equity",
+   "name": "Marvell Technology",
+   "venue": "NYSE",
+   "note": null
+  },
+  "PLTR": {
+   "symbol": "PLTR",
+   "kind": "equity",
+   "name": "Palantir Technologies",
+   "venue": "NYSE",
+   "note": null
+  },
+  "MSTR": {
+   "symbol": "MSTR",
+   "kind": "equity",
+   "name": "Strategy (MicroStrategy)",
+   "venue": "NYSE",
+   "note": null
+  },
+  "RIVN": {
+   "symbol": "RIVN",
+   "kind": "equity",
+   "name": "Rivian Automotive",
+   "venue": "NYSE",
+   "note": null
+  },
+  "RKLB": {
+   "symbol": "RKLB",
+   "kind": "equity",
+   "name": "Rocket Lab USA",
+   "venue": "NYSE",
+   "note": null
+  },
+  "HIMS": {
+   "symbol": "HIMS",
+   "kind": "equity",
+   "name": "Hims & Hers Health",
+   "venue": "NYSE",
+   "note": null
+  },
+  "BABA": {
+   "symbol": "BABA",
+   "kind": "equity",
+   "name": "Alibaba Group ADR",
+   "venue": "NYSE",
+   "note": null
+  },
+  "TSM": {
+   "symbol": "TSM",
+   "kind": "equity",
+   "name": "Taiwan Semiconductor ADR",
+   "venue": "NYSE",
+   "note": null
+  },
+  "RTX": {
+   "symbol": "RTX",
+   "kind": "equity",
+   "name": "RTX Corporation",
+   "venue": "NYSE",
+   "note": null
+  },
+  "CRCL": {
+   "symbol": "CRCL",
+   "kind": "equity",
+   "name": "Circle Internet Group",
+   "venue": "NYSE",
+   "note": null
+  },
+  "CRWV": {
+   "symbol": "CRWV",
+   "kind": "equity",
+   "name": "CoreWeave",
+   "venue": "NYSE",
+   "note": null
+  },
+  "LITE": {
+   "symbol": "LITE",
+   "kind": "equity",
+   "name": "Lumentum Holdings",
+   "venue": "NYSE",
+   "note": null
+  },
+  "SNDK": {
+   "symbol": "SNDK",
+   "kind": "equity",
+   "name": "SanDisk",
+   "venue": "NYSE",
+   "note": null
+  },
+  "BMNR": {
+   "symbol": "BMNR",
+   "kind": "equity",
+   "name": "Bitmine Immersion Technologies",
+   "venue": "NYSE",
+   "note": "Ethereum-treasury miner — not the Australian uranium miner some aggregators resolve"
+  },
+  "CBRS": {
+   "symbol": "CBRS",
+   "kind": "equity",
+   "name": "Cerebras Systems",
+   "venue": "NYSE",
+   "note": "AI infrastructure / semis"
+  },
+  "USAR": {
+   "symbol": "USAR",
+   "kind": "equity",
+   "name": "USA Rare Earth",
+   "venue": "NYSE",
+   "note": null
+  },
+  "BIRD": {
+   "symbol": "BIRD",
+   "kind": "equity",
+   "name": "Allbirds",
+   "venue": "NYSE",
+   "note": null
+  },
+  "CAR": {
+   "symbol": "CAR",
+   "kind": "equity",
+   "name": "Avis Budget Group",
+   "venue": "NYSE",
+   "note": null
+  },
+  "AVGO": {
+   "symbol": "AVGO",
+   "kind": "equity",
+   "name": "Broadcom",
+   "venue": "NYSE",
+   "note": null
+  },
+  "DELL": {
+   "symbol": "DELL",
+   "kind": "equity",
+   "name": "Dell Technologies",
+   "venue": "NYSE",
+   "note": null
+  },
+  "QCOM": {
+   "symbol": "QCOM",
+   "kind": "equity",
+   "name": "Qualcomm",
+   "venue": "NYSE",
+   "note": null
+  },
+  "ARM": {
+   "symbol": "ARM",
+   "kind": "equity",
+   "name": "Arm Holdings",
+   "venue": "NYSE",
+   "note": null
+  },
+  "NOK": {
+   "symbol": "NOK",
+   "kind": "equity",
+   "name": "Nokia",
+   "venue": "NYSE",
+   "note": null
+  },
+  "ASML": {
+   "symbol": "ASML",
+   "kind": "equity",
+   "name": "ASML Holding",
+   "venue": "NYSE",
+   "note": null
+  },
+  "AMAT": {
+   "symbol": "AMAT",
+   "kind": "equity",
+   "name": "Applied Materials",
+   "venue": "NYSE",
+   "note": null
+  },
+  "IBM": {
+   "symbol": "IBM",
+   "kind": "equity",
+   "name": "IBM",
+   "venue": "NYSE",
+   "note": null
+  },
+  "MRNA": {
+   "symbol": "MRNA",
+   "kind": "equity",
+   "name": "Moderna",
+   "venue": "NYSE",
+   "note": null
+  },
+  "WDC": {
+   "symbol": "WDC",
+   "kind": "equity",
+   "name": "Western Digital",
+   "venue": "NYSE",
+   "note": null
+  },
+  "IREN": {
+   "symbol": "IREN",
+   "kind": "equity",
+   "name": "IREN",
+   "venue": "NYSE",
+   "note": null
+  },
+  "VST": {
+   "symbol": "VST",
+   "kind": "equity",
+   "name": "Vistra",
+   "venue": "NYSE",
+   "note": null
+  },
+  "NOW": {
+   "symbol": "NOW",
+   "kind": "equity",
+   "name": "ServiceNow",
+   "venue": "NYSE",
+   "note": null
+  },
+  "AAOI": {
+   "symbol": "AAOI",
+   "kind": "equity",
+   "name": "Applied Optoelectronics",
+   "venue": "NYSE",
+   "note": null
+  },
+  "CRWD": {
+   "symbol": "CRWD",
+   "kind": "equity",
+   "name": "CrowdStrike",
+   "venue": "NYSE",
+   "note": null
+  },
+  "COHR": {
+   "symbol": "COHR",
+   "kind": "equity",
+   "name": "Coherent",
+   "venue": "NYSE",
+   "note": null
+  },
+  "GEV": {
+   "symbol": "GEV",
+   "kind": "equity",
+   "name": "GE Vernova",
+   "venue": "NYSE",
+   "note": null
+  },
+  "GLW": {
+   "symbol": "GLW",
+   "kind": "equity",
+   "name": "Corning",
+   "venue": "NYSE",
+   "note": null
+  },
+  "NET": {
+   "symbol": "NET",
+   "kind": "equity",
+   "name": "Cloudflare",
+   "venue": "NYSE",
+   "note": null
+  },
+  "RDDT": {
+   "symbol": "RDDT",
+   "kind": "equity",
+   "name": "Reddit",
+   "venue": "NYSE",
+   "note": null
+  },
+  "LRCX": {
+   "symbol": "LRCX",
+   "kind": "equity",
+   "name": "Lam Research",
+   "venue": "NYSE",
+   "note": null
+  },
+  "SMCI": {
+   "symbol": "SMCI",
+   "kind": "equity",
+   "name": "Super Micro Computer",
+   "venue": "NYSE",
+   "note": null
+  },
+  "TER": {
+   "symbol": "TER",
+   "kind": "equity",
+   "name": "Teradyne",
+   "venue": "NYSE",
+   "note": null
+  },
+  "CIEN": {
+   "symbol": "CIEN",
+   "kind": "equity",
+   "name": "Ciena",
+   "venue": "NYSE",
+   "note": null
+  },
+  "TTWO": {
+   "symbol": "TTWO",
+   "kind": "equity",
+   "name": "Take-Two Interactive",
+   "venue": "NYSE",
+   "note": null
+  },
+  "STX": {
+   "symbol": "STX",
+   "kind": "equity",
+   "name": "Seagate Technology",
+   "venue": "NYSE",
+   "note": null
+  },
+  "MELI": {
+   "symbol": "MELI",
+   "kind": "equity",
+   "name": "MercadoLibre",
+   "venue": "NYSE",
+   "note": null
+  },
+  "SOFI": {
+   "symbol": "SOFI",
+   "kind": "equity",
+   "name": "SoFi Technologies",
+   "venue": "NYSE",
+   "note": null
+  },
+  "CRDO": {
+   "symbol": "CRDO",
+   "kind": "equity",
+   "name": "Credo Technology",
+   "venue": "NYSE",
+   "note": null
+  },
+  "NBIS": {
+   "symbol": "NBIS",
+   "kind": "equity",
+   "name": "Nebius Group",
+   "venue": "NYSE",
+   "note": null
+  },
+  "GPRO": {
+   "symbol": "GPRO",
+   "kind": "equity",
+   "name": "GoPro",
+   "venue": "NYSE",
+   "note": null
+  },
+  "BB": {
+   "symbol": "BB",
+   "kind": "equity",
+   "name": "BlackBerry",
+   "venue": "NYSE",
+   "note": null
+  },
+  "BE": {
+   "symbol": "BE",
+   "kind": "equity",
+   "name": "Bloom Energy",
+   "venue": "NYSE",
+   "note": null
+  },
+  "STRC": {
+   "symbol": "STRC",
+   "kind": "equity",
+   "name": "Strategy variable-rate preferred",
+   "venue": "NYSE",
+   "note": null
+  },
+  "NCLD": {
+   "symbol": "NCLD",
+   "kind": "etf",
+   "name": "Roundhill Neocloud ETF",
+   "venue": "NYSE",
+   "note": null
+  },
+  "QNT": {
+   "symbol": "QNT",
+   "kind": "equity",
+   "name": "Quantinuum",
+   "venue": "NYSE",
+   "note": null
+  },
+  "SMSN": {
+   "symbol": "005930.KS",
+   "kind": "equity",
+   "name": "Samsung Electronics",
+   "venue": "KRX",
+   "note": null
+  },
+  "SAMSUNG": {
+   "symbol": "005930.KS",
+   "kind": "equity",
+   "name": "Samsung Electronics",
+   "venue": "KRX",
+   "note": null
+  },
+  "HYUNDAI": {
+   "symbol": "005380.KS",
+   "kind": "equity",
+   "name": "Hyundai Motor",
+   "venue": "KRX",
+   "note": null
+  },
+  "SKHX": {
+   "symbol": "000660.KS",
+   "kind": "equity",
+   "name": "SK hynix",
+   "venue": "KRX",
+   "note": null
+  },
+  "SKHY": {
+   "symbol": "000660.KS",
+   "kind": "equity",
+   "name": "SK hynix",
+   "venue": "KRX",
+   "note": null
+  },
+  "SOFTBANK": {
+   "symbol": "9984.T",
+   "kind": "equity",
+   "name": "SoftBank Group",
+   "venue": "TSE",
+   "note": null
+  },
+  "KIOXIA": {
+   "symbol": "285A.T",
+   "kind": "equity",
+   "name": "Kioxia",
+   "venue": "TSE",
+   "note": null
+  },
+  "GIGADEV": {
+   "symbol": "603986.SS",
+   "kind": "equity",
+   "name": "GigaDevice Semiconductor",
+   "venue": "SSE",
+   "note": null
+  },
+  "TENCENT": {
+   "symbol": "0700.HK",
+   "kind": "equity",
+   "name": "Tencent Holdings",
+   "venue": "HKEX",
+   "note": null
+  },
+  "XIAOMI": {
+   "symbol": "1810.HK",
+   "kind": "equity",
+   "name": "Xiaomi",
+   "venue": "HKEX",
+   "note": null
+  },
+  "CXMT": {
+   "symbol": null,
+   "kind": "private",
+   "name": "ChangXin Memory Technologies",
+   "venue": "NONE",
+   "note": null
+  },
+  "SPCX": {
+   "symbol": null,
+   "kind": "private",
+   "name": "SpaceX",
+   "venue": "NONE",
+   "note": null
+  },
+  "SPACEX": {
+   "symbol": null,
+   "kind": "private",
+   "name": "SpaceX",
+   "venue": "NONE",
+   "note": null
+  },
+  "OAI": {
+   "symbol": null,
+   "kind": "private",
+   "name": "OpenAI",
+   "venue": "NONE",
+   "note": null
+  },
+  "OPENAI": {
+   "symbol": null,
+   "kind": "private",
+   "name": "OpenAI",
+   "venue": "NONE",
+   "note": null
+  },
+  "ANTH": {
+   "symbol": null,
+   "kind": "private",
+   "name": "Anthropic",
+   "venue": "NONE",
+   "note": null
+  },
+  "ANTHROPIC": {
+   "symbol": null,
+   "kind": "private",
+   "name": "Anthropic",
+   "venue": "NONE",
+   "note": null
+  },
+  "UNITREE": {
+   "symbol": null,
+   "kind": "private",
+   "name": "Unitree Robotics",
+   "venue": "NONE",
+   "note": null
+  },
+  "ZHIPU": {
+   "symbol": null,
+   "kind": "private",
+   "name": "Zhipu AI",
+   "venue": "NONE",
+   "note": null
+  },
+  "MINIMAX": {
+   "symbol": null,
+   "kind": "private",
+   "name": "MiniMax",
+   "venue": "NONE",
+   "note": null
+  },
+  "SHEIN": {
+   "symbol": null,
+   "kind": "private",
+   "name": "Shein",
+   "venue": "NONE",
+   "note": null
+  },
+  "ANSEM": {
+   "symbol": null,
+   "kind": "private",
+   "name": "Ansem",
+   "venue": "NONE",
+   "note": null
+  },
+  "TOTAL2": {
+   "symbol": null,
+   "kind": "crypto-index",
+   "name": "Crypto market cap ex-BTC",
+   "venue": "CRYPTO",
+   "note": "Total crypto market cap excluding Bitcoin."
+  },
+  "BTCD": {
+   "symbol": null,
+   "kind": "crypto-index",
+   "name": "Bitcoin dominance",
+   "venue": "CRYPTO",
+   "note": "Bitcoin's share of total crypto market cap, in percent."
+  },
+  "OTHERS": {
+   "symbol": null,
+   "kind": "crypto-index",
+   "name": "Crypto market cap ex top 10",
+   "venue": "CRYPTO",
+   "note": "Synthetic index of market cap outside the top ten coins."
+  },
+  "PURRDAT": {
+   "symbol": null,
+   "kind": "crypto-index",
+   "name": "PURR data index",
+   "venue": "CRYPTO",
+   "note": "Deployer-defined synthetic; no external reference."
+  },
+  "BTC": {
+   "symbol": "BTC-USD",
+   "kind": "crypto",
+   "name": "Bitcoin",
+   "venue": "CRYPTO",
+   "note": null
+  },
+  "ETH": {
+   "symbol": "ETH-USD",
+   "kind": "crypto",
+   "name": "Ether",
+   "venue": "CRYPTO",
+   "note": null
+  },
+  "SOL": {
+   "symbol": "SOL-USD",
+   "kind": "crypto",
+   "name": "Solana",
+   "venue": "CRYPTO",
+   "note": null
+  },
+  "XMR": {
+   "symbol": "XMR-USD",
+   "kind": "crypto",
+   "name": "Monero",
+   "venue": "CRYPTO",
+   "note": null
+  },
+  "ZEC": {
+   "symbol": "ZEC-USD",
+   "kind": "crypto",
+   "name": "Zcash",
+   "venue": "CRYPTO",
+   "note": null
+  },
+  "1000PEPE": {
+   "symbol": "PEPE-USD",
+   "kind": "crypto",
+   "name": "Pepe (1000x contract)",
+   "venue": "CRYPTO",
+   "note": null
+  }
+ }
+}

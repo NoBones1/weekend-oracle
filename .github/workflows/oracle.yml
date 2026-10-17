@@ -67,6 +67,13 @@ jobs:
           git -c user.name="weekend-oracle" -c user.email="actions@users.noreply.github.com" commit -qm "Price history $(date -u +%F' '%H:%M)"
           git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" cache
 
+      # Before publishing, so status.json goes out with the page; it only
+      # fails the run at the very end, so the page and history are saved first.
+      - name: Was the weekend scored?
+        id: health
+        continue-on-error: true
+        run: python3 tools/health.py
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
@@ -74,9 +81,11 @@ jobs:
       - id: deploy
         uses: actions/deploy-pages@v4
 
-      # Last, so the page and the history are saved even when this complains.
-      - name: Was the weekend scored?
-        run: python3 tools/health.py
+      - name: Report a missed weekend
+        if: steps.health.outcome == 'failure'
+        run: |
+          cat out/status.json
+          exit 1
 
       # GitHub switches off schedules in repositories with no activity for 60
       # days. A one-line status file on main each Monday keeps it alive.

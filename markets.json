@@ -1,6 +1,6 @@
 {
  "source": "hip3/src/data/underlying.ts",
- "exported": "2026-10-17T02:08:54.143Z",
+ "exported": "2026-10-17T11:21:25.483Z",
  "markets": {
   "GOLD": {
    "symbol": "GC=F",
@@ -100,6 +100,20 @@
    "venue": "CME",
    "note": null
   },
+  "CORN": {
+   "symbol": "ZC=F",
+   "kind": "commodity",
+   "name": "Corn",
+   "venue": "CME",
+   "note": null
+  },
+  "HO": {
+   "symbol": "HO=F",
+   "kind": "commodity",
+   "name": "Heating oil",
+   "venue": "CME",
+   "note": null
+  },
   "SP500": {
    "symbol": "^GSPC",
    "kind": "index",
@@ -160,6 +174,20 @@
    "symbol": "^N225",
    "kind": "index",
    "name": "Nikkei 225",
+   "venue": "NYSE",
+   "note": null
+  },
+  "JPN225": {
+   "symbol": "^N225",
+   "kind": "index",
+   "name": "Nikkei 225",
+   "venue": "NYSE",
+   "note": null
+  },
+  "NIFTY": {
+   "symbol": "^NSEI",
+   "kind": "index",
+   "name": "Nifty 50",
    "venue": "NYSE",
    "note": null
   },
@@ -377,6 +405,20 @@
    "symbol": "DRAM",
    "kind": "etf",
    "name": "Roundhill Memory ETF (Micron, Samsung, SK hynix)",
+   "venue": "NYSE",
+   "note": null
+  },
+  "TLT": {
+   "symbol": "TLT",
+   "kind": "etf",
+   "name": "iShares 20+ Year Treasury ETF",
+   "venue": "NYSE",
+   "note": null
+  },
+  "GDX": {
+   "symbol": "GDX",
+   "kind": "etf",
+   "name": "VanEck Gold Miners ETF",
    "venue": "NYSE",
    "note": null
   },
@@ -867,6 +909,48 @@
    "symbol": "GPRO",
    "kind": "equity",
    "name": "GoPro",
+   "venue": "NYSE",
+   "note": null
+  },
+  "SNAP": {
+   "symbol": "SNAP",
+   "kind": "equity",
+   "name": "Snap",
+   "venue": "NYSE",
+   "note": null
+  },
+  "CVX": {
+   "symbol": "CVX",
+   "kind": "equity",
+   "name": "Chevron",
+   "venue": "NYSE",
+   "note": null
+  },
+  "ACN": {
+   "symbol": "ACN",
+   "kind": "equity",
+   "name": "Accenture",
+   "venue": "NYSE",
+   "note": null
+  },
+  "IONQ": {
+   "symbol": "IONQ",
+   "kind": "equity",
+   "name": "IonQ",
+   "venue": "NYSE",
+   "note": null
+  },
+  "CIFR": {
+   "symbol": "CIFR",
+   "kind": "equity",
+   "name": "Cipher Mining",
+   "venue": "NYSE",
+   "note": null
+  },
+  "UMC": {
+   "symbol": "UMC",
+   "kind": "equity",
+   "name": "United Microelectronics ADR",
    "venue": "NYSE",
    "note": null
   },
